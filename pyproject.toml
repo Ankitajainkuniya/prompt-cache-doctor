@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prompt-cache-doctor"
+version = "0.1.0"
+description = "Diagnose your Anthropic prompt cache hit rate and find the exact reason you're missing it."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Ankita Jainkuniya" }]
+keywords = ["anthropic", "claude", "prompt-cache", "llm", "cost-optimization", "observability"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "typer>=0.9.0",
+    "rich>=13.0.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+]
+
+[project.scripts]
+prompt-cache-doctor = "prompt_cache_doctor.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/Ankitajainkuniya/prompt-cache-doctor"
+Issues = "https://github.com/Ankitajainkuniya/prompt-cache-doctor/issues"
+
+[tool.setuptools.packages.find]
+include = ["prompt_cache_doctor*"]
+
+[tool.setuptools.package-data]
+prompt_cache_doctor = ["fixtures/*.jsonl"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
