@@ -4,36 +4,7 @@
 
 `prompt-cache-doctor` reads your Anthropic API call logs, scores your prompt cache hit rate, and tells you exactly **why** you're missing the cache and **where** to fix it.
 
-```
-$ prompt-cache-doctor analyze demo
-
-  Prompt Cache Doctor — demo mode
-
-  ──────────── Overall ────────────
-  Calls analyzed              247
-  Cache hit rate            41.2%   (target: 80%+ for chat agents)
-  Cost paid              $ 12.84
-  Cost without caching   $ 21.07
-  Savings so far         $  8.23  (39% off)
-  Potential savings      $ 16.51  (you're leaving $8.28 on the table)
-
-  ──────────── Top miss reasons ────────────
-  1. [route=/chat]   System prompt prefix changes per call
-                     → dynamic timestamp at top of system prompt
-                     → fix: move timestamp to last user message
-                     → est. savings: $4.10/mo
-
-  2. [route=/agent]  Tool definitions in different order between calls
-                     → fix: sort tools alphabetically before passing to client
-                     → est. savings: $2.85/mo
-
-  3. [route=/rag]    Cache breakpoint placed after retrieved docs
-                     → cached content is just 800 tokens; could be 14,000
-                     → fix: add cache_control to system prompt instead
-                     → est. savings: $1.33/mo
-
-  Run with --verbose for prompt diffs, or --json for machine output.
-```
+![prompt-cache-doctor demo](demo.svg)
 
 ## Why this exists
 
